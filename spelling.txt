@@ -1,5 +1,6 @@
 Python
 TMP
+capsys
 casefold
 charset
 doseq
@@ -10,6 +11,7 @@ nosec
 params
 pathlib
 pysimpleurl
+readouterr
 repo
 tmp
 unlink

@@ -112,10 +112,7 @@ def run() -> None:
     }
     response = request(url, data=data, method="post")
     json_response = response.json()
-    if json_response:
-        print(json.dumps(json_response, indent=2))
-    else:
-        print(response.body)
+    print(json.dumps(json_response, indent=2))
 
 
 if __name__ == "__main__":

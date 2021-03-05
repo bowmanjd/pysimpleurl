@@ -1,8 +1,9 @@
 """Test HTTP client."""
 
+import subprocess
 from urllib.parse import urlencode
 
-from pysimpleurl import request
+from pysimpleurl import request, run
 
 
 def test_json_basic_get(httpserver):
@@ -56,3 +57,18 @@ def test_form_encoded_post_with_json_response(httpserver):
         httpserver.url_for(url_path), data=data, method="post", jsonformat=False
     ).json()
     assert result == json_sample
+
+
+def test_handle_404(httpserver):
+    url_path = "/nonexistent"
+    httpserver.expect_request(url_path).respond_with_data("", status=404)
+    response = request(httpserver.url_for(url_path))
+    assert response.body == ""
+    assert response.json() == ""
+    assert response.status == 404
+
+
+def test_run(capsys):
+    run()
+    captured = capsys.readouterr()
+    assert "Lorem ipsum dolor sit amet" in captured.out
