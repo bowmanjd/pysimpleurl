@@ -8,12 +8,10 @@ import typing
 import urllib.error
 import urllib.parse
 import urllib.request
-from dataclasses import dataclass
 from email.message import Message
 
 
-@dataclass
-class Response:
+class Response(typing.NamedTuple):
     """Container for HTTP response."""
 
     body: str

@@ -1,0 +1,6 @@
+-r requirements-lint.txt
+black
+jedi
+ptpython
+pynvim
+strip-hints

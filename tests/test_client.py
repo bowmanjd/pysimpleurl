@@ -1,6 +1,6 @@
 """Test HTTP client."""
 
-import subprocess
+import runpy
 from urllib.parse import urlencode
 
 from pysimpleurl import request, run
@@ -70,5 +70,11 @@ def test_handle_404(httpserver):
 
 def test_run(capsys):
     run()
+    captured = capsys.readouterr()
+    assert "Lorem ipsum dolor sit amet" in captured.out
+
+
+def test_run_file(capsys):
+    runpy.run_module("pysimpleurl", run_name="__main__")
     captured = capsys.readouterr()
     assert "Lorem ipsum dolor sit amet" in captured.out
