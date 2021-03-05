@@ -1,0 +1,15 @@
+Python
+TMP
+casefold
+charset
+doseq
+gettempdir
+jsonformat
+lru
+nosec
+params
+pathlib
+pysimpleurl
+repo
+tmp
+unlink

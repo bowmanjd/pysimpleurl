@@ -1,0 +1,18 @@
+-e .
+darglint
+flake8
+flake8-bandit
+flake8-bugbear
+flake8-builtins
+flake8-comprehensions
+flake8-docstrings
+flake8-eradicate
+flake8-isort
+flake8-pytest-style
+flake8-spellcheck
+flakehell
+mypy
+pep8-naming
+pytest
+strip-hints
+pytest-httpserver==1.0.0rc1
