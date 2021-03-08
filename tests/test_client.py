@@ -41,7 +41,7 @@ def test_json_post(httpserver):
     json_sample = {"name": "Lancelot", "movie": "Holy Grail", **data}
     httpserver.expect_request(url_path, json=data).respond_with_json(json_sample)
     result = request(
-        httpserver.url_for(url_path), data=data, method="post", jsonformat=True
+        httpserver.url_for(url_path), data=data, method="post", data_as_json=True
     ).json()
     assert result == json_sample
 
@@ -54,7 +54,7 @@ def test_form_encoded_post_with_json_response(httpserver):
         url_path, method="POST", data=urlencode(data)
     ).respond_with_json(json_sample)
     result = request(
-        httpserver.url_for(url_path), data=data, method="post", jsonformat=False
+        httpserver.url_for(url_path), data=data, method="post", data_as_json=False
     ).json()
     assert result == json_sample
 
@@ -63,8 +63,7 @@ def test_handle_404(httpserver):
     url_path = "/nonexistent"
     httpserver.expect_request(url_path).respond_with_data("", status=404)
     response = request(httpserver.url_for(url_path))
-    assert response.body == ""
-    assert response.json() == ""
+    assert "not found" in response.body.casefold()
     assert response.status == 404
 
 

@@ -2,6 +2,8 @@
 
 Basic example of a Python-based HTTP client that does not depend on any external libraries
 
+Feel free to read [a more detailed explanation in this tutorial](https://dev.to/bowmanjd/http-calls-in-python-without-requests-or-other-external-dependencies-5aj1).
+
 # Use cases
 
 When needs and complexity of HTTP calls are minimal, and outside dependencies are undesirable.
@@ -20,4 +22,4 @@ Copyright © 2021 Jonathan Bowman. All documentation and code contained in these
 
 [article]: https://dev.to/bowmanjd/
 [license]: LICENSE
-[apachelicense]: http://www.apache.org/licenses/LICENSE-2.0
+[apachelicense]: http://www.apache.org/licenses/LICENSE-2.0<LeftRelease>
