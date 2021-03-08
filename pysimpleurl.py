@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""List and process image tags for a repository in a Docker v2 registry."""
+"""Basic example of an HTTP client that does not depend on any external libraries."""
 
 
 import json
