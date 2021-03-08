@@ -1,13 +1,13 @@
-"""Test HTTP client."""
+"""Test HTTP client with new opener."""
 
 import pathlib
 import runpy
-from urllib.error import URLError
+from urllib.error import HTTPError, URLError
 from urllib.parse import urlencode
 
 import pytest
 
-from pysimpleurl import request, run
+from newurlopen import request, run
 
 
 def test_json_basic_get(httpserver):
@@ -74,9 +74,9 @@ def test_form_encoded_post_with_json_response(httpserver):
 def test_handle_404(httpserver):
     url_path = "/nonexistent"
     httpserver.expect_request(url_path).respond_with_data("", status=404)
-    response = request(httpserver.url_for(url_path))
-    assert "not found" in response.body.casefold()
-    assert response.status == 404
+    with pytest.raises(HTTPError) as exception_info:
+        request(httpserver.url_for(url_path))
+    assert exception_info.value.code == 404
 
 
 def test_handle_bad_protocol():
@@ -92,6 +92,6 @@ def test_run(capsys):
 
 
 def test_run_file(capsys):
-    runpy.run_module("pysimpleurl", run_name="__main__")
+    runpy.run_module("newurlopen", run_name="__main__")
     captured = capsys.readouterr()
     assert "Lorem ipsum dolor sit amet" in captured.out

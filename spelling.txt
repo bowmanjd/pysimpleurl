@@ -14,5 +14,6 @@ pathlib
 pysimpleurl
 readouterr
 repo
+runpy
 tmp
 unlink
