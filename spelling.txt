@@ -1,14 +1,19 @@
 Python
 Runtime
 TMP
+autouse
 capsys
 casefold
 charset
+debuglevel
 doseq
 gettempdir
 jsonformat
 lru
+newurlopen
+noqa
 nosec
+noseq
 params
 pathlib
 pysimpleurl
@@ -16,4 +21,5 @@ readouterr
 repo
 runpy
 tmp
+trustme
 unlink

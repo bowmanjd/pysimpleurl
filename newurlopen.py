@@ -23,20 +23,19 @@ class SafeOpener(urllib.request.OpenerDirector):
         """
         super().__init__()
         handlers = handlers or (
-            urllib.request.ProxyHandler,
             urllib.request.UnknownHandler,
-            urllib.request.HTTPHandler,
             urllib.request.HTTPDefaultErrorHandler,
             urllib.request.HTTPRedirectHandler,
             urllib.request.HTTPSHandler,
             urllib.request.HTTPErrorProcessor,
         )
 
-        for handler in handlers:
-            self.add_handler(handler())
+        for handler_class in handlers:
+            handler = handler_class()
+            self.add_handler(handler)
 
 
-urllib.request.install_opener(SafeOpener())
+opener = SafeOpener()
 
 
 class Response(typing.NamedTuple):
@@ -106,10 +105,15 @@ def request(
             request_data = urllib.parse.urlencode(data).encode()
 
     httprequest = urllib.request.Request(
-        url, data=request_data, headers=headers, method=method
+        url,
+        data=request_data,
+        headers=headers,
+        method=method,
     )
 
-    with urllib.request.urlopen(httprequest) as httpresponse:
+    with opener.open(
+        httprequest,
+    ) as httpresponse:
         response = Response(
             headers=httpresponse.headers,
             status=httpresponse.status,

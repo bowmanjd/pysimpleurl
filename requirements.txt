@@ -2,3 +2,4 @@
 coverage
 pytest
 pytest-httpserver==1.0.0rc1
+trustme
